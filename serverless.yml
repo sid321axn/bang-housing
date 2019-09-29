@@ -1,0 +1,52 @@
+
+
+service: bangalore-housing
+
+
+provider:
+  name: aws
+  runtime: python3.6
+  stage: dev
+  region: us-east-1
+
+
+package:
+#  include:
+#    - include-me.py
+#    - include-me-dir/**
+   exclude:
+     - node_modules/**
+     - .vscode/**
+     - __pycache__/**
+     - .ipynb_checkpoints/**
+     - (*).ipynb
+   
+
+functions:
+  predict-prices:
+    handler: handler-predict
+    memorySize: 512
+    timeout: 30
+    events:
+     - http:
+         path: get-price
+         method: get
+         request:
+           parameters:
+             queryStrings:
+               area_type: true
+               availability: true
+               balcony: true
+               bath: true
+               pincode: true
+               total_sqft: true
+               size_BHK: true
+               size_bed: true
+
+plugins:
+  - serverless-python-requirements
+
+custom:
+  pythonRequirements:
+    dockerizePip: true
+    slim: true
