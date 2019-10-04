@@ -1,6 +1,6 @@
 
 
-service: bangalore-housing
+service: bang-housing
 
 
 provider:
@@ -24,7 +24,7 @@ package:
 
 functions:
   predict-prices:
-    handler: handler-predict
+    handler: handler.predict
     memorySize: 512
     timeout: 30
     events:
@@ -45,7 +45,6 @@ functions:
 
 plugins:
   - serverless-python-requirements
-
 custom:
   pythonRequirements:
     dockerizePip: true
