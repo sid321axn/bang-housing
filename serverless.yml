@@ -1,7 +1,5 @@
 
-
 service: bang-housing
-
 
 provider:
   name: aws
@@ -49,3 +47,4 @@ custom:
   pythonRequirements:
     dockerizePip: true
     slim: true
+
